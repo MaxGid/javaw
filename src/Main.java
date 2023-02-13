@@ -15,6 +15,7 @@ public class Main {
         String operand1;
         String operand2;
         String answerRom;
+        String wrong;
         boolean roman;
         HashMap<String, Integer> map = new HashMap<>();
         map.put("I", 1);
@@ -46,6 +47,9 @@ public class Main {
             num2 = map.get(operand2);
             roman = true;
         }
+        wrong = reader.nextLine();
+        if (wrong=="") {
+        reader.close();
         switch(op) {
             case '+': answer = num1 + num2;
                 break;
@@ -83,18 +87,20 @@ public class Main {
                 answerRom = map2.get(answer);
             System.out.println(answerRom);}
             if (answer<100) {
-                tens = answer / 10;
-                answer2 = answer % 10;
-                if (answer2==0) {
-                answerRom = map2.get(answer);
-                    System.out.print(answerRom);}
-                else {
-                    operand1 = map2.get(tens*10);
-                    operand2 = map2.get(answer2);
-                    System.out.println(operand1+operand2);
+                if (answer > 10) {
+                    tens = answer / 10;
+                    answer2 = answer % 10;
+                    if (answer2 == 0) {
+                        answerRom = map2.get(answer);
+                        System.out.print(answerRom);
+                    } else {
+                        operand1 = map2.get(tens * 10);
+                        operand2 = map2.get(answer2);
+                        System.out.println(operand1 + operand2);
+                    }
                 }
-            }
-        } else {
-        System.out.print(answer);}
-    }
+            }} else {System.out.print(answer);}
+    }else {
+           throw new IOException();
+        }}
 }
